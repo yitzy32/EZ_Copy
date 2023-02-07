@@ -30,9 +30,12 @@ def get_file_extensions(path):
     extension_set.discard("DS_Store")
     return extension_set
 
+def format_path(str):
+    return str.replace("\\", "").strip()
+
 def get_inputs(): 
     inputs = {}
-    source = input('Please provide full path of folder to copy from\n').strip()
+    source = format_path(input('Please provide full path of folder to copy from\n'))
     if invalid_dir(source): return inputs
     extension_options = get_file_extensions(source)
     if len(extension_options) == 0:
@@ -48,7 +51,7 @@ def get_inputs():
     if ext not in extension_options:
         print('Sorry. '+ext+' is an invalid file extension.')
         return inputs
-    dest = input('You chose to copy all '+ext+' files. \nNow please provide full path of folder to copy to\n').strip()
+    dest = format_path(input('You chose to copy all '+ext+' files. \nNow please provide full path of folder to copy to\n'))
     if invalid_dir(dest): return inputs
     totals = get_total(source, dest, ext)
     if totals['to_copy'] == 0:
