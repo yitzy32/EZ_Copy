@@ -79,7 +79,6 @@ def copy(inputs):
     for file_name in os.listdir(source):
         if file_name.endswith(ext):
             if os.path.exists(dest+'/'+file_name):
-                print(file_name +' already exists in '+dest+' skipped copy.')
                 total_skipped += 1
             else: 
                 total_copied += 1
